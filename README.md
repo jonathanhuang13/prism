@@ -1,1 +1,24 @@
 # prism
+
+## Installation
+### Setup Postgres
+```
+brew update && brew install postgresql
+initdb /usr/local/var/postgres
+pg_ctl -D /usr/local/var/postgres -l logfile start
+```
+
+*Create User*
+
+```
+createuser -P -s -e -d prism
+```
+
+Set password to "prism"
+
+*Create Database*
+
+```
+createdb prism
+createdb prism_test
+```
