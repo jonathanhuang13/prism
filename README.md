@@ -1,6 +1,7 @@
 # prism
 
 ## Installation
+## API
 ### Setup Postgres
 ```
 brew update && brew install postgresql
@@ -21,4 +22,11 @@ Set password to "prism"
 ```
 createdb prism
 createdb prism_test
+```
+
+*Migrate and Seed*
+```
+cd api
+mix deps.get
+mix ecto.reset
 ```
