@@ -23,7 +23,7 @@ Exercise,Running
 Exercise,Sports
 Exercise,Swimming
 Exercise,Training
-Exercise,Walking
+Exercise,Exercise - Walking
 Exercise,Working Out
 Exercise,Yoga
 Exercise,Exercise - Other
@@ -43,11 +43,11 @@ Introspection,Reflection
 ,Leisure
 Leisure,Exploring
 Leisure,Internet
-Leisure,Listening
+Leisure,Leisure - Listening
 Leisure,Playing Board Games
 Leisure,Playing Games
 Leisure,Playing Video Games
-Leisure,Reading
+Leisure,Leisure - Reading
 Leisure,Shopping
 Leisure,Talking
 Leisure,Watching TV
@@ -58,35 +58,34 @@ Other,Waiting
 Personal Work,Communication
 Personal Work,Projects
 Personal Work,Personal Work - Other
-Personal Work,Studying
+Personal Work,Personal Work - Studying
 Personal Work,Updating Tools
 ,Preparation
 Preparation,Getting Ready (Physically)
 Preparation,Planning
-,Sleep
-Sleep,Laying on the Bed
-Sleep,Nap
-Sleep,Rest
-Sleep,Sleep
+,Rest
+Rest,Laying on the Bed
+Rest,Nap
+Rest,Sleep
 ,Social
 Social,Hangout
-Social,Meeting
+Social,Social - Meeting
 ,Transition
 ,Transportation
 Transportation,Airplane
 Transportation,Car
 Transportation,Train
-Transportation,Walking
+Transportation,Transportation - Walking
 ,Work
 Work,General Day Job
-Work,Meeting
-Work,Studying
+Work,Work - Meeting
+Work,Work - Studying
 Work,Presentation
 ,Worship
 Worship,Church
-Worship,Listening
+Worship,Worship - Listening
 Worship,Music
 Worship,Praying
-Worship,Reading
+Worship,Worship - Reading
 Worship,Small Group
-Worship,Studying
+Worship,Worship - Studying
