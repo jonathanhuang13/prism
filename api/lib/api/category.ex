@@ -7,6 +7,7 @@ defmodule Api.Category do
   schema "categories" do
     field :name, :string
 
+    has_many :events, Api.Event
     belongs_to :parent, Category
     timestamps()
   end

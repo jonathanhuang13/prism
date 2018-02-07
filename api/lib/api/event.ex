@@ -10,6 +10,9 @@ defmodule Api.Event do
     field :location, :string
     field :start, :utc_datetime
 
+    belongs_to :user, Api.User
+    belongs_to :category, Api.Category
+
     timestamps()
   end
 
