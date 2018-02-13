@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :api,
-  ecto_repos: [Api.Repo]
+config :prism,
+  ecto_repos: [Prism.Repo]
 
 # Configures the endpoint
-config :api, ApiWeb.Endpoint,
+config :prism, PrismWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "xCWaJXw4g96pjQ/oQzRaOtzS/3qA6wq2WuoMKgKiCDogc/LSzL1xqzfiXrkyBONl",
-  render_errors: [view: ApiWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Api.PubSub,
+  secret_key_base: "d3ZGfCV5spIt3OQ14FQvgG/Y+T7hkZTKKjCwSDMX/wUntdWgu7uxpQ1ntZZJ72dC",
+  render_errors: [view: PrismWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: Prism.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

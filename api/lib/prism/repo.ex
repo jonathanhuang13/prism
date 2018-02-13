@@ -1,5 +1,5 @@
-defmodule Api.Repo do
-  use Ecto.Repo, otp_app: :api
+defmodule Prism.Repo do
+  use Ecto.Repo, otp_app: :prism
 
   @doc """
   Dynamically loads the repository url from the

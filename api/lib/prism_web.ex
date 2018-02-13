@@ -1,12 +1,12 @@
-defmodule ApiWeb do
+defmodule PrismWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use ApiWeb, :controller
-      use ApiWeb, :view
+      use PrismWeb, :controller
+      use PrismWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,27 +19,24 @@ defmodule ApiWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: ApiWeb
+      use Phoenix.Controller, namespace: PrismWeb
       import Plug.Conn
-      import ApiWeb.Router.Helpers
-      import ApiWeb.Gettext
+      import PrismWeb.Router.Helpers
+      import PrismWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/api_web/templates",
-                        namespace: ApiWeb
+      use Phoenix.View, root: "lib/prism_web/templates",
+                        namespace: PrismWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
-
-      import ApiWeb.Router.Helpers
-      import ApiWeb.ErrorHelpers
-      import ApiWeb.Gettext
+      import PrismWeb.Router.Helpers
+      import PrismWeb.ErrorHelpers
+      import PrismWeb.Gettext
     end
   end
 
@@ -54,7 +51,7 @@ defmodule ApiWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import ApiWeb.Gettext
+      import PrismWeb.Gettext
     end
   end
 

@@ -29,4 +29,5 @@ createdb prism_test
 cd api
 mix deps.get
 mix ecto.reset
+mix phx.server
 ```

@@ -1,9 +1,9 @@
-defmodule Api.Mixfile do
+defmodule Prism.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :api,
+      app: :prism,
       version: "0.0.1",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -19,7 +19,7 @@ defmodule Api.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Api.Application, []},
+      mod: {Prism.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -37,11 +37,8 @@ defmodule Api.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
-      {:csv, "~> 2.0.0"}
+      {:cowboy, "~> 1.0"}
     ]
   end
 
