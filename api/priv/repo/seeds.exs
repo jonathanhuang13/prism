@@ -12,6 +12,7 @@
 
 alias Prism.Repo
 alias Prism.User
+alias Prism.Category
 
 # -- SEED USERS --
 
@@ -20,3 +21,41 @@ user = Repo.insert! %User {
   last_name: "Doe",
   email: "johndoe@gmail.com"
 }
+
+
+# -- SEED CATEGORIES --
+
+defmodule Prism.SeedCategories do
+  def seed_main_categories(row) do
+    changeset = Category.changeset(%Category{}, row)
+    Repo.insert!(changeset)
+  end
+
+  def seed_sub_categories(row) do
+    parent_id = Repo.get_by(Category, name: row.category).id
+
+    data = %{:name => row.name, :parent_id => parent_id}
+    changeset = Category.changeset(%Category{}, data)
+
+    Repo.insert!(changeset)
+  end
+end
+
+File.stream!("./priv/repo/categories.csv")
+  |> Stream.drop(1)
+  |> CSV.decode!(headers: [:category, :name])
+  |> Enum.filter(fn(row) ->
+      row.category == ""
+    end
+  )
+  |> Enum.each(&Prism.SeedCategories.seed_main_categories/1)
+
+File.stream!("./priv/repo/categories.csv")
+  |> Stream.drop(1)
+  |> CSV.decode!(headers: [:category, :name])
+  |> Enum.filter(fn(row) ->
+      row.category != ""
+    end
+  )
+  |> Enum.each(&Prism.SeedCategories.seed_sub_categories/1)
+
