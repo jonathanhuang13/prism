@@ -9,3 +9,14 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Prism.Repo
+alias Prism.User
+
+# -- SEED USERS --
+
+user = Repo.insert! %User {
+  first_name: "John",
+  last_name: "Doe",
+  email: "johndoe@gmail.com"
+}
