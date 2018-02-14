@@ -10,6 +10,7 @@ defmodule Prism.Event do
     field :description, :string
 
     belongs_to :user, Prism.User
+    belongs_to :category, Prism.Category
     timestamps()
   end
 

@@ -7,6 +7,7 @@ defmodule Prism.Category do
     field :name, :string
 
     belongs_to :parent, Category
+    has_many :events, Prism.Event
 
     timestamps()
   end
