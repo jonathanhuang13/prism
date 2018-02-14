@@ -13,6 +13,7 @@
 alias Prism.Repo
 alias Prism.User
 alias Prism.Category
+alias Prism.Event
 
 # -- SEED USERS --
 
@@ -59,3 +60,24 @@ File.stream!("./priv/repo/categories.csv")
   )
   |> Enum.each(&Prism.SeedCategories.seed_sub_categories/1)
 
+
+# -- SEED EVENTS --
+
+defmodule Prism.SeedEvents do
+  def seed(row) do
+    user = Repo.get_by(User, last_name: "Doe")
+    category = Repo.get_by(Category, name: row.activity)
+
+    {:ok, start_time, _} = DateTime.from_iso8601(row.start)
+    {:ok, end_time, _} = DateTime.from_iso8601(row.end)
+
+    event = %Event{start: start_time, end: end_time, location: row.location, description: row.description, user: user, category: category}
+
+    Repo.insert!(event)
+  end
+end
+
+File.stream!("./priv/repo/events.csv")
+  |> Stream.drop(1)
+  |> CSV.decode!(headers: [:start, :end, :location, :category, :activity, :qualifier, :description, :measurement, :value])
+  |> Enum.each(&Prism.SeedEvents.seed/1)

@@ -9,5 +9,6 @@ defmodule Prism.Repo.Migrations.CreateEvents do
       add :description, :string
 
       timestamps()
+    end
   end
 end
