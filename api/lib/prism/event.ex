@@ -9,6 +9,7 @@ defmodule Prism.Event do
     field :location, :string
     field :description, :string
 
+    belongs_to :user, Prism.User
     timestamps()
   end
 
