@@ -14,7 +14,8 @@ defmodule Prism.Event do
 
   @doc false
   def changeset(%Event{} = event, attrs) do
-    user
+    event
     |> cast(attrs, [:start, :end, :location, :description])
     |> validate_required([:start, :end, :location, :description])
+  end
 end
