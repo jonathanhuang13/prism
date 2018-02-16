@@ -4,6 +4,7 @@ defmodule Prism.User do
   alias Prism.User
 
 
+  @derive {Poison.Encoder, except: [:__meta__, :events]}
   schema "users" do
     field :email, :string
     field :first_name, :string

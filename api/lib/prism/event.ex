@@ -3,6 +3,7 @@ defmodule Prism.Event do
   import Ecto.Changeset
   alias Prism.Event
 
+  @derive {Poison.Encoder, except: [:__meta__]}
   schema "events" do
     field :start, :utc_datetime
     field :end, :utc_datetime

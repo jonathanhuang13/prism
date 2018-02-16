@@ -7,5 +7,7 @@ defmodule PrismWeb.Router do
 
   scope "/api", PrismWeb do
     pipe_through :api
+
+    get "/events", EventsController, :index
   end
 end
