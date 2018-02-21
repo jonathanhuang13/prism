@@ -25,6 +25,10 @@ defmodule Prism.Category do
   @doc """
     Recursively loads parents into the given struct until it hits nil
   """
+  def load_parents(categories) when is_list(categories) do
+    Enum.map(categories, fn(c) -> load_parents(c) end)
+  end
+
   def load_parents(parent) do
     load_parents(parent, 10)
   end
@@ -40,9 +44,9 @@ defmodule Prism.Category do
 
   def load_parents(nil, _), do: nil
 
-  @doc """
-    Recursively loads children into the given struct until it hits []
-  """
+  #@doc """
+    #Recursively loads children into the given struct until it hits []
+  #"""
   #def load_children(model), do: load_children(model, 10)
 
   #def load_children(_, limit) when limit < 0, do: raise "Recursion limit reached"

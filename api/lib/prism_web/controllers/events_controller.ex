@@ -3,10 +3,10 @@ defmodule PrismWeb.EventsController do
   alias Prism.Repo
 
   def index(conn, _params) do
-    events = Repo.get(Prism.Event, 1)
-      |> Repo.preload([:user, :category])
+    events = Repo.all(Prism.Event)
+      |> Prism.Event.load_category
+      |> Repo.preload([:user])
     
-    IO.inspect(events)
     json conn, events
   end
 end
