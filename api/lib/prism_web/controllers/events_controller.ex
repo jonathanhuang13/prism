@@ -18,4 +18,21 @@ defmodule PrismWeb.EventsController do
 
     json conn, event
   end
+
+  def create(conn, params) do
+    %{"user_id" => user_id, "category_id" => category_id, "location" => location, "description" => description} = params
+
+    user = Repo.get(Prism.User, user_id)
+    category = Repo.get(Prism.Category, category_id)
+      |> Prism.Category.load_parents
+
+
+    {:ok, start_time, _} = DateTime.from_iso8601(params["start"])
+    {:ok, end_time, _} = DateTime.from_iso8601(params["end"])
+
+    event = %Event{start: start_time, end: end_time, location: location, description: description, user: user, category: category}
+
+    event = Repo.insert!(event)
+    json conn, event
+  end
 end
