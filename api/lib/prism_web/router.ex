@@ -9,5 +9,6 @@ defmodule PrismWeb.Router do
     pipe_through :api
 
     get "/events", EventsController, :index
+    get "/events/:id", EventsController, :show
   end
 end
