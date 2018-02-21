@@ -35,4 +35,13 @@ defmodule PrismWeb.EventsController do
     event = Repo.insert!(event)
     json conn, event
   end
+
+  def delete(conn, %{"id" => id}) do
+    event = Repo.get(Event, String.to_integer(id))
+      |> Event.load_category
+      |> Repo.preload([:user])
+
+    resp = Repo.delete!(event)
+    json conn, resp
+  end
 end
