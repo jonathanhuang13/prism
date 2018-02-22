@@ -19,7 +19,7 @@ defmodule Prism.Event do
   @doc false
   def changeset(%Event{} = event, attrs) do
     event
-    |> cast(attrs, [:start, :end, :location, :description])
+    |> cast(attrs, [:start, :end, :location, :description, :category_id])
     |> validate_required([:start, :end, :location, :description])
   end
 
@@ -34,8 +34,12 @@ defmodule Prism.Event do
 
   def load_category(_, limit) when limit < 0, do: raise "Recursion limit reached"
 
+  def load_category(%Event{category: nil} = category, _), do: category 
+
   def load_category(%Event{category: %Ecto.Association.NotLoaded{}} = model, limit) do
     model = model |> Repo.preload(:category) 
     Map.update!(model, :category, &Prism.Category.load_parents(&1, limit - 1))
   end
+
+  def load_category(nil, _), do: nil
 end

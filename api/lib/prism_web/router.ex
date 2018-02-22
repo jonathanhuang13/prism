@@ -10,6 +10,7 @@ defmodule PrismWeb.Router do
 
     get "/events", EventsController, :index
     get "/events/:id", EventsController, :show
+    put "/events/:id", EventsController, :update
     post "/events", EventsController, :create
     delete "/events/:id", EventsController, :delete
 

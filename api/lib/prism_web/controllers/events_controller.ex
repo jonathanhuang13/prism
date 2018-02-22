@@ -19,6 +19,18 @@ defmodule PrismWeb.EventsController do
     json conn, event
   end
 
+  def update(conn, %{"id" => id} = params) do
+    event = Repo.get(Event, String.to_integer(id))
+      |> Event.load_category
+      |> Repo.preload([:user])
+
+    changeset = Event.changeset(event, params)
+
+    resp = Repo.update!(changeset)
+
+    json conn, resp
+  end
+
   def create(conn, params) do
     %{"user_id" => user_id, "category_id" => category_id, "location" => location, "description" => description} = params
 
