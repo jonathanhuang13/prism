@@ -49,4 +49,12 @@ defmodule PrismWeb.CategoriesController do
     json(conn, categories)
   end
 
+  def show_subs_for_main(conn, %{"mainId" => id}) do
+    query = from(c in Category, where: c.parent_id == ^String.to_integer(id))
+
+    categories = Repo.all(query)
+      |> Category.load_parents
+
+    json(conn, categories)
+  end
 end
