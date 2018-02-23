@@ -40,6 +40,14 @@ defmodule PrismWeb.CategoriesController do
     json(conn, category)
   end
 
+  def delete(conn, %{"id" => id}) do
+    category = Repo.get(Category, String.to_integer(id))
+      |> Category.load_parents
+
+    resp = Repo.delete!(category)
+    json(conn, resp)
+  end
+
   def index_main(conn, _params) do
     query = from(c in Category, where: is_nil(c.parent_id))
 

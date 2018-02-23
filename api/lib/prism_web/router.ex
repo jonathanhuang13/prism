@@ -20,7 +20,7 @@ defmodule PrismWeb.Router do
     get "/categories/sub/:mainId", CategoriesController, :show_subs_for_main
     put "/categories/:id", CategoriesController, :update
     post "/categories", CategoriesController, :create
-    #delete "/categories/:id", CategoriesController, :delete
+    delete "/categories/:id", CategoriesController, :delete
 
   end
 end
