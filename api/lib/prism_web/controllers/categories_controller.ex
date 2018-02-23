@@ -9,4 +9,11 @@ defmodule PrismWeb.CategoriesController do
 
     json(conn, categories)
   end
+
+  def show(conn, %{"id" => id}) do
+    category = Repo.get(Category, String.to_integer(id))
+      |> Category.load_parents
+
+    json(conn, category)
+  end
 end
