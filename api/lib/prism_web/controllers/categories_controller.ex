@@ -1,4 +1,5 @@
 defmodule PrismWeb.CategoriesController do
+  import Ecto.Query
   use PrismWeb, :controller
   alias Prism.Repo
   alias Prism.Category
@@ -23,7 +24,7 @@ defmodule PrismWeb.CategoriesController do
 
     changeset = Category.changeset(category, params)
     
-    resp = Repo.update!(changeset)
+    Repo.update!(changeset)
     category = Repo.get(Category, String.to_integer(id))
       |> Category.load_parents
 
@@ -38,4 +39,14 @@ defmodule PrismWeb.CategoriesController do
 
     json(conn, category)
   end
+
+  def index_main(conn, _params) do
+    query = from(c in Category, where: is_nil(c.parent_id))
+
+    categories = Repo.all(query)
+      |> Category.load_parents
+
+    json(conn, categories)
+  end
+
 end
