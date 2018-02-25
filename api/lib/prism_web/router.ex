@@ -15,9 +15,8 @@ defmodule PrismWeb.Router do
     delete "/events/:id", EventsController, :delete
 
     get "/categories", CategoriesController, :index
-    get "/categories/main", CategoriesController, :index_main     # order matters
     get "/categories/:id", CategoriesController, :show
-    get "/categories/sub/:mainId", CategoriesController, :show_subs_for_main
+    get "/categories/:id/subs", CategoriesController, :show_subs
     put "/categories/:id", CategoriesController, :update
     post "/categories", CategoriesController, :create
     delete "/categories/:id", CategoriesController, :delete

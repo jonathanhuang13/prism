@@ -4,8 +4,18 @@ defmodule PrismWeb.CategoriesController do
   alias Prism.Repo
   alias Prism.Category
 
-  def index(conn, _params) do
-    categories = Repo.all(Category)
+  def filter_by_main(query, params) do
+    params["main"]
+      |> case do
+          "true" -> query |> where([c], is_nil(c.parent_id))
+          _      -> query
+         end
+  end
+
+  def index(conn, params) do
+    categories = Category
+      |> filter_by_main(params)
+      |> Repo.all
       |> Category.load_parents
 
     json(conn, categories)
@@ -48,16 +58,7 @@ defmodule PrismWeb.CategoriesController do
     json(conn, resp)
   end
 
-  def index_main(conn, _params) do
-    query = from(c in Category, where: is_nil(c.parent_id))
-
-    categories = Repo.all(query)
-      |> Category.load_parents
-
-    json(conn, categories)
-  end
-
-  def show_subs_for_main(conn, %{"mainId" => id}) do
+  def show_subs(conn, %{"id" => id}) do
     query = from(c in Category, where: c.parent_id == ^String.to_integer(id))
 
     categories = Repo.all(query)
