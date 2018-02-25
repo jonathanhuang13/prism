@@ -7,6 +7,8 @@ defmodule PrismWeb.EventsController do
   def index(conn, params) do
     events = Event
       |> EventsQueryBuilder.filter_by_location(params)
+      |> EventsQueryBuilder.filter_by_start_time(params)
+      |> EventsQueryBuilder.filter_by_end_time(params)
       |> Repo.all
       |> Event.load_category
       |> Repo.preload([:user])
