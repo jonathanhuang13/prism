@@ -3,18 +3,11 @@ defmodule PrismWeb.CategoriesController do
   use PrismWeb, :controller
   alias Prism.Repo
   alias Prism.Category
-
-  def filter_by_main(query, params) do
-    params["main"]
-      |> case do
-          "true" -> query |> where([c], is_nil(c.parent_id))
-          _      -> query
-         end
-  end
+  alias PrismWeb.CategoriesQueryBuilder
 
   def index(conn, params) do
     categories = Category
-      |> filter_by_main(params)
+      |> CategoriesQueryBuilder.filter_by_main(params)
       |> Repo.all
       |> Category.load_parents
 
