@@ -2,9 +2,12 @@ defmodule PrismWeb.EventsController do
   use PrismWeb, :controller
   alias Prism.Repo
   alias Prism.Event
+  alias PrismWeb.EventsQueryBuilder
 
-  def index(conn, _params) do
-    events = Repo.all(Event)
+  def index(conn, params) do
+    events = Event
+      |> EventsQueryBuilder.filter_by_location(params)
+      |> Repo.all
       |> Event.load_category
       |> Repo.preload([:user])
     
