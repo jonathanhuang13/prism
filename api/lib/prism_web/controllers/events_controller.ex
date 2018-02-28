@@ -9,6 +9,7 @@ defmodule PrismWeb.EventsController do
       |> EventsQueryBuilder.filter_by_location(params)
       |> EventsQueryBuilder.filter_by_start_time(params)
       |> EventsQueryBuilder.filter_by_end_time(params)
+      |> EventsQueryBuilder.filter_by_category(params)
       |> Repo.all
       |> Event.load_category
       |> Repo.preload([:user])

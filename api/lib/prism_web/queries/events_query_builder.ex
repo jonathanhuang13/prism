@@ -2,9 +2,18 @@ defmodule PrismWeb.EventsQueryBuilder do
   import Ecto.Query
   alias Prism.Event
 
+  def filter_by_category(query, params) do
+    params["category_id"]
+      |> case do
+          nil -> query
+          id -> query |> where([e], e.category_id == ^String.to_integer(id))
+         end 
+  end
+
   def filter_by_location(query, params) do
     params["location"]
       |> case do
+          nil -> query
           text -> query |> where([e], e.location == ^text)
          end
   end
