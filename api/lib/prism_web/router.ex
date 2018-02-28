@@ -21,5 +21,7 @@ defmodule PrismWeb.Router do
     post "/categories", CategoriesController, :create
     delete "/categories/:id", CategoriesController, :delete
 
+    get "/stats", StatsController, :index
+
   end
 end
